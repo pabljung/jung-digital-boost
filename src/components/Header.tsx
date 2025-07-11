@@ -18,32 +18,32 @@ const Header = () => {
             alt="Jung Logo" 
             className="h-8 w-auto"
           />
-          <span className="text-lg font-bold text-jung-dark">jung</span>
+          <span className="jung-heading text-lg text-jung-dark">jung</span>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
           <button 
             onClick={() => scrollToSection('services')}
-            className="text-jung-dark hover:text-jung-pink transition-colors"
+            className="jung-menu text-jung-dark hover:text-jung-pink transition-colors"
           >
             Serviços
           </button>
           <button 
             onClick={() => scrollToSection('about')}
-            className="text-jung-dark hover:text-jung-pink transition-colors"
+            className="jung-menu text-jung-dark hover:text-jung-pink transition-colors"
           >
             Sobre
           </button>
           <button 
             onClick={() => scrollToSection('benefits')}
-            className="text-jung-dark hover:text-jung-pink transition-colors"
+            className="jung-menu text-jung-dark hover:text-jung-pink transition-colors"
           >
             Benefícios
           </button>
         </nav>
 
         <Button 
-          className="bg-jung-pink hover:bg-jung-pink/90 text-white font-semibold px-6 py-2 animate-pulse-glow"
+          className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-6 py-2 animate-pulse-glow"
           onClick={() => scrollToSection('cta')}
         >
           Agendar Diagnóstico

@@ -109,8 +109,21 @@ export default {
 				'scale-in': 'scale-in 0.4s ease-out'
 			},
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
-				display: ['Inter', 'system-ui', 'sans-serif'],
+				'public-sans': ['Public Sans', 'system-ui', 'sans-serif'],
+				'roc-grotesk': ['Oswald', 'system-ui', 'sans-serif'],
+				'nexus-bold': ['Anton', 'system-ui', 'sans-serif'],
+				'quickwriters': ['Fredoka', 'system-ui', 'sans-serif'],
+				sans: ['Public Sans', 'system-ui', 'sans-serif'],
+				display: ['Anton', 'system-ui', 'sans-serif'],
+			},
+			letterSpacing: {
+				'jung-tight': '-0.04em', // -4% para Public Sans chapéu
+				'jung-normal': '0em', // 0% para corpo de texto
+				'jung-wide': '0.02em', // 2% para Nexus e Quickwriters
+			},
+			lineHeight: {
+				'jung-tight': '0.9', // 90% para Nexus Bold
+				'jung-normal': '1.2', // 120% padrão
 			}
 		}
 	},

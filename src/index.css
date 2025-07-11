@@ -123,3 +123,24 @@ All colors MUST be HSL.
   transform: translateY(-5px);
   box-shadow: 0 20px 40px hsl(var(--jung-dark) / 0.1);
 }
+
+/* Jung Typography Classes */
+.jung-heading {
+  @apply font-nexus-bold uppercase leading-jung-tight tracking-jung-wide;
+}
+
+.jung-subheading {
+  @apply font-roc-grotesk uppercase font-bold leading-jung-normal tracking-jung-normal;
+}
+
+.jung-subtitle {
+  @apply font-quickwriters uppercase leading-jung-normal tracking-jung-wide;
+}
+
+.jung-body {
+  @apply font-public-sans font-normal leading-jung-normal tracking-jung-normal;
+}
+
+.jung-menu {
+  @apply font-public-sans font-black uppercase leading-jung-normal tracking-jung-tight;
+}
