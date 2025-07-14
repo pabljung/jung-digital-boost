@@ -1,8 +1,12 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
+import { ScheduleModal } from "./ScheduleModal";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -70,7 +74,7 @@ const Hero = () => {
             <Button 
               size="lg"
               className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto"
-              onClick={() => scrollToSection('cta')}
+              onClick={() => setIsModalOpen(true)}
             >
               <span className="hidden sm:inline">AGENDAR MEU DIAGNÓSTICO GRATUITO</span>
               <span className="sm:hidden">AGENDAR DIAGNÓSTICO</span>
@@ -102,6 +106,11 @@ const Hero = () => {
           <div className="w-1 h-3 bg-jung-pink rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
+
+      <ScheduleModal 
+        open={isModalOpen} 
+        onOpenChange={setIsModalOpen} 
+      />
     </section>
   );
 };

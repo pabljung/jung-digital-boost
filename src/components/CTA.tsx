@@ -1,9 +1,13 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Phone, Calendar, Zap } from "lucide-react";
+import { ScheduleModal } from "./ScheduleModal";
 
 const CTA = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return (
     <section id="cta" className="py-20 bg-jung-dark">
       <div className="container mx-auto px-4">
@@ -62,6 +66,7 @@ const CTA = () => {
             <Button 
               size="lg"
               className="bg-jung-pink hover:bg-jung-pink/90 text-white font-black px-12 py-6 text-xl rounded-2xl hover-lift animate-pulse-glow group text-center"
+              onClick={() => setIsModalOpen(true)}
             >
               <div className="flex flex-col items-center">
                 <div className="flex items-center mb-1">
@@ -84,6 +89,11 @@ const CTA = () => {
           </div>
         </div>
       </div>
+      
+      <ScheduleModal 
+        open={isModalOpen} 
+        onOpenChange={setIsModalOpen} 
+      />
     </section>
   );
 };

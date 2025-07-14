@@ -1,7 +1,11 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ScheduleModal } from "./ScheduleModal";
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -43,12 +47,17 @@ const Header = () => {
 
         <Button 
           className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-4 py-2 text-sm lg:px-6 lg:text-base animate-pulse-glow"
-          onClick={() => scrollToSection('cta')}
+          onClick={() => setIsModalOpen(true)}
         >
           <span className="hidden sm:inline">Agendar Diagnóstico</span>
           <span className="sm:hidden">Agendar</span>
         </Button>
       </div>
+      
+      <ScheduleModal 
+        open={isModalOpen} 
+        onOpenChange={setIsModalOpen} 
+      />
     </header>
   );
 };
