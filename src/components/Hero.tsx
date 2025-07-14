@@ -24,41 +24,41 @@ const Hero = () => {
       <div className="absolute top-40 right-20 w-6 h-6 bg-jung-pink/60 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
       <div className="absolute bottom-40 left-20 w-3 h-3 bg-jung-pink/80 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
 
-      <div className="container mx-auto px-4 py-20 text-center relative z-10">
+      <div className="container mx-auto px-4 py-12 md:py-20 text-center relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Logo Integration */}
-          <div className="mb-8 animate-fade-in">
+          <div className="mb-6 md:mb-8 animate-fade-in">
             <img 
               src="/lovable-uploads/fbe5fb0d-f90f-441b-a790-9eb0e94bcc2b.png" 
               alt="Jung Logo" 
-              className="h-16 w-auto mx-auto mb-4 opacity-90"
+              className="h-12 md:h-16 w-auto mx-auto mb-4 opacity-90"
             />
-            <p className="text-jung-pink font-quickwriters text-lg tracking-wide uppercase">
+            <p className="text-jung-pink font-quickwriters text-base md:text-lg tracking-wide uppercase">
               Voice & Performance
             </p>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight animate-fade-in">
+          <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight animate-fade-in px-2">
             Transforme cliques em{' '}
             <span className="text-jung-pink relative">
               faturamento
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-jung-pink/60 rounded"></div>
+              <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-0.5 md:h-1 bg-jung-pink/60 rounded"></div>
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in">
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4">
             Escale resultados com estratégias afiadas, feitas sob medida pro seu negócio.
           </p>
 
           {/* Value Proposition */}
-          <div className="bg-jung-pink/10 border border-jung-pink/20 rounded-2xl p-6 md:p-8 mb-10 max-w-4xl mx-auto animate-scale-in">
-            <div className="flex items-center justify-center mb-4">
-              <Zap className="w-6 h-6 text-jung-pink mr-2" />
-              <span className="text-jung-pink font-semibold">Diagnóstico GRATUITO</span>
+          <div className="bg-jung-pink/10 border border-jung-pink/20 rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-10 max-w-4xl mx-auto animate-scale-in">
+            <div className="flex items-center justify-center mb-3 md:mb-4">
+              <Zap className="w-5 h-5 md:w-6 md:h-6 text-jung-pink mr-2" />
+              <span className="text-jung-pink font-semibold text-sm md:text-base">Diagnóstico GRATUITO</span>
             </div>
-            <p className="text-white text-lg leading-relaxed">
+            <p className="text-white text-sm md:text-lg leading-relaxed px-2">
               Agende agora um Diagnóstico <strong className="text-jung-pink">GRATUITO</strong> e descubra como nossa bagagem de{' '}
               <strong className="text-jung-pink">5 anos</strong> — e mais de{' '}
               <strong className="text-jung-pink">R$ 31 milhões gerados em vendas</strong> — pode destravar novos patamares pra sua marca.
@@ -66,30 +66,31 @@ const Hero = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="animate-scale-in">
+          <div className="animate-scale-in mb-8 md:mb-0">
             <Button 
               size="lg"
-              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-8 py-4 text-lg rounded-xl hover-lift animate-pulse-glow group"
+              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto"
               onClick={() => scrollToSection('cta')}
             >
-              AGENDAR MEU DIAGNÓSTICO GRATUITO
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="hidden sm:inline">AGENDAR MEU DIAGNÓSTICO GRATUITO</span>
+              <span className="sm:hidden">AGENDAR DIAGNÓSTICO</span>
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-in">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16 animate-fade-in px-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-jung-pink mb-2">5 anos</div>
-              <div className="text-gray-400">de experiência</div>
+              <div className="text-2xl md:text-3xl font-bold text-jung-pink mb-2">5 anos</div>
+              <div className="text-gray-400 text-sm md:text-base">de experiência</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-jung-pink mb-2">R$ 31M+</div>
-              <div className="text-gray-400">gerados em vendas</div>
+              <div className="text-2xl md:text-3xl font-bold text-jung-pink mb-2">R$ 31M+</div>
+              <div className="text-gray-400 text-sm md:text-base">gerados em vendas</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-jung-pink mb-2">100%</div>
-              <div className="text-gray-400">foco em resultado</div>
+              <div className="text-2xl md:text-3xl font-bold text-jung-pink mb-2">100%</div>
+              <div className="text-gray-400 text-sm md:text-base">foco em resultado</div>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/8f7eded5-2bc0-4f95-a28b-5de066d830aa.png" 
               alt="Jung Logo" 
-              className="h-10 w-auto"
+              className="h-14 w-auto"
             />
           </div>
           

@@ -11,16 +11,16 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 w-full bg-jung-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <img 
             src="/lovable-uploads/d3a253f3-3e62-476c-acd8-138f280440d0.png" 
             alt="Jung Logo" 
-            className="h-12 w-auto"
+            className="h-16 w-auto"
           />
         </div>
         
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center space-x-8">
           <button 
             onClick={() => scrollToSection('services')}
             className="jung-menu text-jung-dark hover:text-jung-pink transition-colors"
@@ -42,10 +42,11 @@ const Header = () => {
         </nav>
 
         <Button 
-          className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-6 py-2 animate-pulse-glow"
+          className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-4 py-2 text-sm lg:px-6 lg:text-base animate-pulse-glow"
           onClick={() => scrollToSection('cta')}
         >
-          Agendar Diagnóstico
+          <span className="hidden sm:inline">Agendar Diagnóstico</span>
+          <span className="sm:hidden">Agendar</span>
         </Button>
       </div>
     </header>
