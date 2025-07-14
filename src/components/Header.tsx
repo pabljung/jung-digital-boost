@@ -12,15 +12,12 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-jung-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center">
           <img 
-            src="/lovable-uploads/a1dd3ecd-5727-4856-b0fd-81d29ffbb634.png" 
+            src="/lovable-uploads/d3a253f3-3e62-476c-acd8-138f280440d0.png" 
             alt="Jung Logo" 
             className="h-12 w-auto"
           />
-          <div className="flex flex-col">
-            <div className="jung-subtitle text-xs text-jung-pink leading-tight">Voice & Performance</div>
-          </div>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
