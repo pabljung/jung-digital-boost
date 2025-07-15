@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, Clock, User, Mail, Phone } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const scheduleSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -80,23 +81,49 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
   const onSubmit = async (data: ScheduleFormData) => {
     setIsSubmitting(true);
     
-    // Simula envio do formulário
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    
-    toast({
-      title: "Diagnóstico agendado!",
-      description: "Entraremos em contato em breve.",
-    });
+    try {
+      const { error } = await supabase.functions.invoke('send-schedule-email', {
+        body: {
+          name: data.name,
+          email: data.email,
+          whatsapp: data.whatsapp,
+          preferredTime: data.preferredTime,
+        },
+      });
 
-    // Reset após 3 segundos
-    setTimeout(() => {
-      setIsSuccess(false);
-      form.reset();
-      onOpenChange(false);
-    }, 3000);
+      if (error) {
+        console.error('Error sending email:', error);
+        toast({
+          title: "Erro ao enviar",
+          description: "Tente novamente em alguns instantes.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setIsSuccess(true);
+      
+      toast({
+        title: "Diagnóstico agendado!",
+        description: "Entraremos em contato em breve.",
+      });
+
+      // Reset após 3 segundos
+      setTimeout(() => {
+        setIsSuccess(false);
+        form.reset();
+        onOpenChange(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente em alguns instantes.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
