@@ -82,43 +82,77 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.functions.invoke('send-schedule-email', {
-        body: {
-          name: data.name,
-          email: data.email,
-          whatsapp: data.whatsapp,
-          preferredTime: data.preferredTime,
-        },
-      });
-
-      if (error) {
-        console.error('Error sending email:', error);
+      // Validate the form data
+      const validatedData = scheduleSchema.parse(data);
+      
+      console.log("Sending schedule request:", validatedData);
+      
+      // Get the current session for authentication
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError || !sessionData.session) {
         toast({
-          title: "Erro ao enviar",
-          description: "Tente novamente em alguns instantes.",
+          title: "Erro de autenticação",
+          description: "Você precisa estar logado para agendar. Recarregue a página e tente novamente.",
           variant: "destructive",
         });
         return;
       }
-
-      setIsSuccess(true);
       
-      toast({
-        title: "Diagnóstico agendado!",
-        description: "Entraremos em contato em breve.",
+      const { data: result, error } = await supabase.functions.invoke('send-schedule-email', {
+        body: validatedData,
+        headers: {
+          Authorization: `Bearer ${sessionData.session.access_token}`,
+        },
       });
 
-      // Reset após 3 segundos
+      if (error) {
+        console.error("Error sending schedule email:", error);
+        
+        // Handle specific error cases
+        if (error.message?.includes('429')) {
+          toast({
+            title: "Muitas tentativas",
+            description: "Você fez muitas tentativas. Aguarde uma hora e tente novamente.",
+            variant: "destructive",
+          });
+        } else if (error.message?.includes('401')) {
+          toast({
+            title: "Sessão expirada",
+            description: "Sua sessão expirou. Recarregue a página e tente novamente.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Erro ao enviar agendamento",
+            description: "Ocorreu um erro ao enviar seu agendamento. Tente novamente.",
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      console.log("Schedule email sent successfully:", result);
+      
+      toast({
+        title: "Agendamento enviado com sucesso!",
+        description: "Em breve entraremos em contato para agendar seu diagnóstico gratuito.",
+      });
+      
+      setIsSuccess(true);
+      
+      // Reset form and close modal after 3 seconds
       setTimeout(() => {
-        setIsSuccess(false);
         form.reset();
+        setIsSuccess(false);
         onOpenChange(false);
       }, 3000);
+      
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error in onSubmit:", error);
       toast({
-        title: "Erro ao enviar",
-        description: "Tente novamente em alguns instantes.",
+        title: "Erro de validação",
+        description: "Verifique os dados informados e tente novamente.",
         variant: "destructive",
       });
     } finally {
