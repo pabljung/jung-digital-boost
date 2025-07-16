@@ -18,9 +18,9 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/d3a253f3-3e62-476c-acd8-138f280440d0.png" 
+            src="/lovable-uploads/8b5b2e3d-e16d-49c8-9ae3-4cc297ad8bb2.png" 
             alt="Jung Logo" 
-            className="h-16 w-auto"
+            className="h-20 w-auto"
           />
         </div>
         

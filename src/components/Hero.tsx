@@ -33,13 +33,10 @@ const Hero = () => {
           {/* Logo Integration */}
           <div className="mb-6 md:mb-8 animate-fade-in">
             <img 
-              src="/lovable-uploads/fbe5fb0d-f90f-441b-a790-9eb0e94bcc2b.png" 
+              src="/lovable-uploads/8b5b2e3d-e16d-49c8-9ae3-4cc297ad8bb2.png" 
               alt="Jung Logo" 
-              className="h-12 md:h-16 w-auto mx-auto mb-4 opacity-90"
+              className="h-16 md:h-20 w-auto mx-auto opacity-90"
             />
-            <p className="text-jung-pink font-quickwriters text-base md:text-lg tracking-wide uppercase">
-              Voice & Performance
-            </p>
           </div>
 
           {/* Main Headline */}
