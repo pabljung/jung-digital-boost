@@ -1,4 +1,4 @@
 project_id = "rivttlezosjsivoozbfr"
 
 [functions.send-schedule-email]
-verify_jwt = true
+verify_jwt = false

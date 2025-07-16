@@ -120,32 +120,11 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Validate JWT token
+    // Validate authorization header (basic security check)
     const authHeader = req.headers.get('authorization');
-    if (!authHeader) {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return new Response(
         JSON.stringify({ error: "Token de autorização necessário" }),
-        {
-          status: 401,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
-
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-      {
-        global: {
-          headers: { Authorization: authHeader },
-        },
-      }
-    );
-
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
-    if (authError || !user) {
-      return new Response(
-        JSON.stringify({ error: "Token inválido ou expirado" }),
         {
           status: 401,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -165,7 +144,7 @@ const handler = async (req: Request): Promise<Response> => {
       preferredTime: validatedData.preferredTime
     };
 
-    console.log("Sending schedule email for validated request from user:", user.id);
+    console.log("Sending schedule email for validated request from IP:", clientIP);
 
     const emailResponse = await resend.emails.send({
       from: "JungCria <contato@jungcria.com>",

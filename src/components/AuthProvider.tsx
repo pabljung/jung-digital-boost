@@ -1,6 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Session, User } from "@supabase/supabase-js";
+
+interface AuthContextType {
+  session: Session | null;
+  user: User | null;
+  loading: boolean;
+  getAuthHeader: () => string;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -10,6 +27,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Function to get auth header for API calls
+  const getAuthHeader = () => {
+    if (session?.access_token) {
+      return `Bearer ${session.access_token}`;
+    }
+    // Fallback to anon key for unauthenticated requests
+    return `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpdnR0bGV6b3Nqc2l2b296YmZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTIyNzIsImV4cCI6MjA2NzgyODI3Mn0.HlHiGbbOElSysl0v3g5nG9TIv49wlC0gjmdhh2YwIuQ`;
+  };
 
   useEffect(() => {
     // Set up auth state listener
@@ -25,18 +51,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const initializeAuth = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
-        
-        if (session) {
-          setSession(session);
-          setUser(session.user);
-        } else {
-          // Create anonymous session for security
-          const { data, error } = await supabase.auth.signInAnonymously();
-          if (data.session && !error) {
-            setSession(data.session);
-            setUser(data.user);
-          }
-        }
+        setSession(session);
+        setUser(session?.user ?? null);
       } catch (error) {
         console.error('Error initializing auth:', error);
       } finally {
@@ -57,5 +73,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     );
   }
 
-  return <>{children}</>;
+  const value = {
+    session,
+    user,
+    loading,
+    getAuthHeader,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

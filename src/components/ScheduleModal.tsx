@@ -29,6 +29,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, Clock, User, Mail, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/components/AuthProvider";
 
 const scheduleSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -48,6 +49,7 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+  const { getAuthHeader } = useAuth();
 
   const form = useForm<ScheduleFormData>({
     resolver: zodResolver(scheduleSchema),
@@ -87,22 +89,10 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
       
       console.log("Sending schedule request:", validatedData);
       
-      // Get the current session for authentication
-      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-      
-      if (sessionError || !sessionData.session) {
-        toast({
-          title: "Erro de autenticação",
-          description: "Você precisa estar logado para agendar. Recarregue a página e tente novamente.",
-          variant: "destructive",
-        });
-        return;
-      }
-      
       const { data: result, error } = await supabase.functions.invoke('send-schedule-email', {
         body: validatedData,
         headers: {
-          Authorization: `Bearer ${sessionData.session.access_token}`,
+          Authorization: getAuthHeader(),
         },
       });
 
