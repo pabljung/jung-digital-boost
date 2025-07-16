@@ -3,8 +3,6 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.51.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -146,6 +144,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending schedule email for validated request from IP:", clientIP);
 
+    // Initialize Resend with API key
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      throw new Error("RESEND_API_KEY não está configurada");
+    }
+    
+    const resend = new Resend(resendApiKey);
     const emailResponse = await resend.emails.send({
       from: "JungCria <contato@jungcria.com>",
       to: ["fernanda@jungcria.com"],
