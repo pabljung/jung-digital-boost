@@ -60,10 +60,10 @@ const Benefits = () => {
   };
 
   return (
-    <section id="benefits" className="py-20 bg-gray-50">
+    <section id="benefits" className="py-20 bg-gray-50" role="region" aria-labelledby="benefits-heading">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-jung-dark mb-6">
+          <h2 id="benefits-heading" className="text-4xl md:text-5xl font-black text-jung-dark mb-6">
             O que você leva nessa{' '}
             <span className="text-jung-pink">jornada</span>
           </h2>

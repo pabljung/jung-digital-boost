@@ -12,3 +12,12 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /tmp/
+
+Sitemap: https://jungagency.com.br/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

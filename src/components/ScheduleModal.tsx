@@ -189,7 +189,7 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex items-center gap-2 jung-menu text-jung-dark">
-                      <User className="w-4 h-4" />
+                      <User className="w-4 h-4" aria-hidden="true" />
                       Nome *
                     </FormLabel>
                     <FormControl>
@@ -198,9 +198,11 @@ export const ScheduleModal = ({ open, onOpenChange }: ScheduleModalProps) => {
                         {...field}
                         className="jung-body"
                         disabled={isSubmitting}
+                        aria-required="true"
+                        aria-describedby="name-error"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage id="name-error" role="alert" />
                   </FormItem>
                 )}
               />

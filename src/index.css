@@ -96,6 +96,82 @@ All colors MUST be HSL.
   50% { box-shadow: 0 0 40px hsl(var(--jung-pink) / 0.6); }
 }
 
+/* Improved focus visibility */
+.focus-visible:focus {
+  outline: 2px solid hsl(var(--jung-pink));
+  outline-offset: 2px;
+}
+
+/* Better accessibility for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+  }
+  
+  .hover-lift {
+    transition: none;
+  }
+}
+
+/* Enhanced performance optimizations */
+.hover-lift {
+  will-change: transform, box-shadow;
+}
+
+.animate-float,
+.animate-pulse-glow {
+  will-change: transform, box-shadow;
+}
+
+/* Improved contrast for accessibility */
+.text-gray-600 {
+  color: hsl(215, 13%, 45%); /* Better contrast ratio */
+}
+
+.text-gray-400 {
+  color: hsl(215, 13%, 55%); /* Improved readability */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-jung-pink {
+    text-shadow: 0 0 2px hsl(var(--jung-dark));
+  }
+  
+  .bg-jung-pink {
+    border: 2px solid hsl(var(--jung-dark));
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid hsl(var(--jung-pink));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px hsl(var(--jung-pink) / 0.3);
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 8px 16px;
+  background: hsl(var(--jung-pink));
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }

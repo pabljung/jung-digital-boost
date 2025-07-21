@@ -34,17 +34,20 @@ const Hero = () => {
           <div className="mb-6 md:mb-8 animate-fade-in">
             <img 
               src="/lovable-uploads/8b5b2e3d-e16d-49c8-9ae3-4cc297ad8bb2.png" 
-              alt="Jung Logo" 
+              alt="Jung - Agência de Performance Marketing e Mídia Paga" 
               className="h-16 md:h-20 w-auto mx-auto opacity-90"
+              loading="eager"
+              width="200"
+              height="80"
             />
           </div>
 
           {/* Main Headline */}
           <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight animate-fade-in px-2">
             Transforme cliques em{' '}
-            <span className="text-jung-pink relative">
+            <span className="text-jung-pink relative" aria-label="faturamento, palavra destacada">
               faturamento
-              <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-0.5 md:h-1 bg-jung-pink/60 rounded"></div>
+              <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-0.5 md:h-1 bg-jung-pink/60 rounded" aria-hidden="true"></div>
             </span>
           </h1>
 
@@ -70,12 +73,13 @@ const Hero = () => {
           <div className="animate-scale-in mb-8 md:mb-0">
             <Button 
               size="lg"
-              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto"
+              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto focus:ring-4 focus:ring-jung-pink/50"
               onClick={() => setIsModalOpen(true)}
+              aria-label="Agendar diagnóstico gratuito de marketing digital"
             >
               <span className="hidden sm:inline">AGENDAR MEU DIAGNÓSTICO GRATUITO</span>
               <span className="sm:hidden">AGENDAR DIAGNÓSTICO</span>
-              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Button>
           </div>
 

@@ -19,8 +19,11 @@ const Header = () => {
         <div className="flex items-center">
           <img 
             src="/lovable-uploads/2fcbc0c6-19c2-4bb6-81e1-a7c0dc2f3fbf.png" 
-            alt="Jung Logo" 
+            alt="Jung Voice & Performance - Agência de Performance Marketing" 
             className="h-20 w-auto"
+            loading="eager"
+            width="200"
+            height="80"
           />
         </div>
         
@@ -46,8 +49,9 @@ const Header = () => {
         </nav>
 
         <Button 
-          className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-4 py-2 text-sm lg:px-6 lg:text-base animate-pulse-glow"
+          className="bg-jung-pink hover:bg-jung-pink/90 text-white jung-body font-semibold px-4 py-2 text-sm lg:px-6 lg:text-base animate-pulse-glow focus:ring-4 focus:ring-jung-pink/50"
           onClick={() => setIsModalOpen(true)}
+          aria-label="Abrir modal para agendar diagnóstico gratuito"
         >
           <span className="hidden sm:inline">Agendar Diagnóstico</span>
           <span className="sm:hidden">Agendar</span>

@@ -9,7 +9,7 @@ const CTA = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   return (
-    <section id="cta" className="py-20 bg-jung-dark">
+    <section id="cta" className="py-20 bg-jung-dark" role="region" aria-labelledby="cta-heading">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Main CTA */}
@@ -17,12 +17,15 @@ const CTA = () => {
             <div className="mb-8">
               <img 
                 src="/lovable-uploads/b5a1af54-1ab5-4b8f-96ff-19f69b3d8720.png" 
-                alt="Jung Pink Logo" 
+                alt="Jung - Logo rosa da agência de performance marketing" 
                 className="h-20 w-auto mx-auto mb-4"
+                loading="lazy"
+                width="200"
+                height="80"
               />
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+            <h2 id="cta-heading" className="text-4xl md:text-6xl font-black text-white mb-6">
               Pronto pra{' '}
               <span className="text-jung-pink">transformar</span>{' '}
               seu negócio?
@@ -65,14 +68,15 @@ const CTA = () => {
           <div className="text-center">
             <Button 
               size="lg"
-              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-black px-12 py-6 text-xl rounded-2xl hover-lift animate-pulse-glow group text-center"
+              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-black px-12 py-6 text-xl rounded-2xl hover-lift animate-pulse-glow group text-center focus:ring-4 focus:ring-jung-pink/50"
               onClick={() => setIsModalOpen(true)}
+              aria-label="Agendar diagnóstico gratuito de performance marketing"
             >
               <div className="flex flex-col items-center">
                 <div className="flex items-center mb-1">
-                  <Calendar className="mr-3 w-6 h-6" />
+                  <Calendar className="mr-3 w-6 h-6" aria-hidden="true" />
                   AGENDAR DIAGNÓSTICO GRATUITO
-                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </div>
                 <div className="text-sm font-normal opacity-90">
                   Sem compromisso • Resultado garantido

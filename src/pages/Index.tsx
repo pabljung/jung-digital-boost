@@ -7,17 +7,23 @@ import DetailedServices from "@/components/DetailedServices";
 import Benefits from "@/components/Benefits";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import SchemaMarkup from "@/components/SchemaMarkup";
+import SkipLink from "@/components/SkipLink";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SkipLink />
+      <SchemaMarkup />
       <Header />
-      <Hero />
-      <Services />
-      <About />
-      <DetailedServices />
-      <Benefits />
-      <CTA />
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <Services />
+        <About />
+        <DetailedServices />
+        <Benefits />
+        <CTA />
+      </main>
       <Footer />
     </div>
   );
