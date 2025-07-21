@@ -3,9 +3,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
 import { ScheduleModal } from "./ScheduleModal";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { elementRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.1,
+    triggerOnce: true
+  });
   
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -28,10 +33,10 @@ const Hero = () => {
       <div className="absolute top-40 right-20 w-6 h-6 bg-jung-pink/60 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
       <div className="absolute bottom-40 left-20 w-3 h-3 bg-jung-pink/80 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
 
-      <div className="container mx-auto px-4 py-12 md:py-20 text-center relative z-10">
+      <div ref={elementRef} className="container mx-auto px-4 py-12 md:py-20 text-center relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Logo Integration */}
-          <div className="mb-6 md:mb-8 animate-fade-in">
+          <div className={`mb-6 md:mb-8 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
             <img 
               src="/lovable-uploads/8b5b2e3d-e16d-49c8-9ae3-4cc297ad8bb2.png" 
               alt="Jung - Agência de Performance Marketing e Mídia Paga" 
@@ -43,7 +48,7 @@ const Hero = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight animate-fade-in px-2">
+          <h1 className={`text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight px-2 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up animate-delay-100 opacity-100' : 'opacity-0'}`}>
             Transforme cliques em{' '}
             <span className="text-jung-pink relative" aria-label="faturamento, palavra destacada">
               faturamento
@@ -52,12 +57,12 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4">
+          <p className={`text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed px-4 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up animate-delay-200 opacity-100' : 'opacity-0'}`}>
             Escale resultados com estratégias afiadas, feitas sob medida pro seu negócio.
           </p>
 
           {/* Value Proposition */}
-          <div className="bg-jung-pink/10 border border-jung-pink/20 rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-10 max-w-4xl mx-auto animate-scale-in">
+          <div className={`bg-jung-pink/10 border border-jung-pink/20 rounded-2xl p-4 md:p-6 lg:p-8 mb-8 md:mb-10 max-w-4xl mx-auto transition-all-smooth hover-scale ${isIntersecting ? 'animate-scale-in animate-delay-300 opacity-100' : 'opacity-0'}`}>
             <div className="flex items-center justify-center mb-3 md:mb-4">
               <Zap className="w-5 h-5 md:w-6 md:h-6 text-jung-pink mr-2" />
               <span className="text-jung-pink font-semibold text-sm md:text-base">Diagnóstico GRATUITO</span>
@@ -70,10 +75,10 @@ const Hero = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="animate-scale-in mb-8 md:mb-0">
+          <div className={`mb-8 md:mb-0 transition-all-smooth ${isIntersecting ? 'animate-scale-in animate-delay-400 opacity-100' : 'opacity-0'}`}>
             <Button 
               size="lg"
-              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto focus:ring-4 focus:ring-jung-pink/50"
+              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-6 md:px-8 py-3 md:py-4 text-base md:text-lg rounded-xl hover-lift animate-pulse-glow group w-full sm:w-auto focus:ring-4 focus:ring-jung-pink/50 transition-all-smooth"
               onClick={() => setIsModalOpen(true)}
               aria-label="Agendar diagnóstico gratuito de marketing digital"
             >
@@ -84,7 +89,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16 animate-fade-in px-4">
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16 px-4 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up animate-delay-500 opacity-100' : 'opacity-0'}`}>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-jung-pink mb-2">5 anos</div>
               <div className="text-gray-400 text-sm md:text-base">de experiência</div>

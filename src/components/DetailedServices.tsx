@@ -2,8 +2,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Megaphone, Users, TrendingUp, Share2 } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const DetailedServices = () => {
+  const { elementRef, isIntersecting } = useIntersectionObserver();
+  
   const services = [
     {
       icon: <Megaphone className="w-10 h-10" />,
@@ -35,9 +38,9 @@ const DetailedServices = () => {
   };
 
   return (
-    <section className="py-20 bg-jung-dark">
+    <section ref={elementRef} className="py-20 bg-jung-dark">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             Como impulsionamos o{' '}
             <span className="text-jung-pink">seu negócio</span>
@@ -49,7 +52,13 @@ const DetailedServices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {services.map((service, index) => (
-            <Card key={index} className="bg-white/5 border-white/10 hover-lift group">
+            <Card 
+              key={index} 
+              className={`bg-white/5 border-white/10 hover-lift group hover-scale transition-all-smooth ${
+                isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${0.1 + (index * 0.2)}s` }}
+            >
               <CardContent className="p-8">
                 <div className="flex items-start space-x-4">
                   <div className="text-jung-pink group-hover:text-white transition-colors">
@@ -69,10 +78,10 @@ const DetailedServices = () => {
           ))}
         </div>
 
-        <div className="text-center">
+        <div className={`text-center transition-all-smooth ${isIntersecting ? 'animate-scale-in animate-delay-500 opacity-100' : 'opacity-0'}`}>
           <Button 
             size="lg"
-            className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-8 py-4 text-lg rounded-xl hover-lift animate-pulse-glow group"
+            className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-8 py-4 text-lg rounded-xl hover-lift animate-pulse-glow group transition-all-smooth"
             onClick={() => scrollToSection('cta')}
           >
             QUERO ESCALAR MEUS RESULTADOS

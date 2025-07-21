@@ -1,8 +1,11 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Target, Users, TrendingUp, BarChart3, Eye, Zap, UserPlus, DollarSign, Clock } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const Services = () => {
+  const { elementRef, isIntersecting } = useIntersectionObserver();
+  
   const services = [
     {
       icon: <Eye className="w-8 h-8" />,
@@ -59,9 +62,9 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-gray-50" role="region" aria-labelledby="services-heading">
+    <section ref={elementRef} id="services" className="py-20 bg-gray-50" role="region" aria-labelledby="services-heading">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
           <h2 id="services-heading" className="text-4xl md:text-5xl font-black text-jung-dark mb-6">
             O que fazemos pelo seu negócio
           </h2>
@@ -72,7 +75,14 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" role="list">
           {services.map((service, index) => (
-            <Card key={index} className="hover-lift border-0 shadow-lg bg-white group focus-within:ring-2 focus-within:ring-jung-pink/50" role="listitem">
+            <Card 
+              key={index} 
+              className={`hover-lift border-0 shadow-lg bg-white group focus-within:ring-2 focus-within:ring-jung-pink/50 hover-scale transition-all-smooth ${
+                isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${0.1 + (index * 0.1)}s` }}
+              role="listitem"
+            >
               <CardContent className="p-8 text-center">
                 <div className="mb-6 text-jung-pink group-hover:text-jung-dark transition-colors" aria-hidden="true">
                   {service.icon}
@@ -88,13 +98,13 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="text-center bg-jung-dark rounded-2xl p-8 md:p-12">
+        <div className={`text-center bg-jung-dark rounded-2xl p-8 md:p-12 hover-scale transition-all-smooth ${isIntersecting ? 'animate-scale-in animate-delay-500 opacity-100' : 'opacity-0'}`}>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Pronto pra transformar tráfego em{' '}
             <span className="text-jung-pink">resultado de verdade?</span>
           </h3>
           <button 
-            className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-8 py-4 text-lg rounded-xl hover-lift animate-pulse-glow group inline-flex items-center focus:ring-4 focus:ring-jung-pink/50 focus:outline-none"
+            className="bg-jung-pink hover:bg-jung-pink/90 text-white font-bold px-8 py-4 text-lg rounded-xl hover-lift animate-pulse-glow group inline-flex items-center focus:ring-4 focus:ring-jung-pink/50 focus:outline-none transition-all-smooth"
             onClick={() => scrollToSection('cta')}
             aria-label="Navegar para seção de agendamento de diagnóstico gratuito"
           >

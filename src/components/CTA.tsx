@@ -4,16 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Phone, Calendar, Zap } from "lucide-react";
 import { ScheduleModal } from "./ScheduleModal";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const CTA = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { elementRef, isIntersecting } = useIntersectionObserver();
   
   return (
-    <section id="cta" className="py-20 bg-jung-dark" role="region" aria-labelledby="cta-heading">
+    <section ref={elementRef} id="cta" className="py-20 bg-jung-dark" role="region" aria-labelledby="cta-heading">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Main CTA */}
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
             <div className="mb-8">
               <img 
                 src="/lovable-uploads/b5a1af54-1ab5-4b8f-96ff-19f69b3d8720.png" 
@@ -39,7 +41,7 @@ const CTA = () => {
 
           {/* Benefits Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card className="bg-white/5 border-white/10">
+            <Card className={`bg-white/5 border-white/10 hover-scale transition-all-smooth ${isIntersecting ? 'animate-fade-in-left animate-delay-100 opacity-100' : 'opacity-0'}`}>
               <CardContent className="p-6 text-center">
                 <Calendar className="w-8 h-8 text-jung-pink mx-auto mb-4" />
                 <h3 className="text-white font-bold mb-2">Diagnóstico Gratuito</h3>
@@ -47,7 +49,7 @@ const CTA = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-white/5 border-white/10">
+            <Card className={`bg-white/5 border-white/10 hover-scale transition-all-smooth ${isIntersecting ? 'animate-fade-in-up animate-delay-200 opacity-100' : 'opacity-0'}`}>
               <CardContent className="p-6 text-center">
                 <Zap className="w-8 h-8 text-jung-pink mx-auto mb-4" />
                 <h3 className="text-white font-bold mb-2">5 Anos de Experiência</h3>
@@ -55,7 +57,7 @@ const CTA = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-white/5 border-white/10">
+            <Card className={`bg-white/5 border-white/10 hover-scale transition-all-smooth ${isIntersecting ? 'animate-fade-in-right animate-delay-300 opacity-100' : 'opacity-0'}`}>
               <CardContent className="p-6 text-center">
                 <Phone className="w-8 h-8 text-jung-pink mx-auto mb-4" />
                 <h3 className="text-white font-bold mb-2">R$ 31M+ Gerados</h3>
@@ -65,10 +67,10 @@ const CTA = () => {
           </div>
 
           {/* Main CTA Button */}
-          <div className="text-center">
+          <div className={`text-center transition-all-smooth ${isIntersecting ? 'animate-scale-in animate-delay-400 opacity-100' : 'opacity-0'}`}>
             <Button 
               size="lg"
-              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-black px-12 py-6 text-xl rounded-2xl hover-lift animate-pulse-glow group text-center focus:ring-4 focus:ring-jung-pink/50"
+              className="bg-jung-pink hover:bg-jung-pink/90 text-white font-black px-12 py-6 text-xl rounded-2xl hover-lift animate-pulse-glow group text-center focus:ring-4 focus:ring-jung-pink/50 transition-all-smooth"
               onClick={() => setIsModalOpen(true)}
               aria-label="Agendar diagnóstico gratuito de performance marketing"
             >
