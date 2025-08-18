@@ -35,17 +35,6 @@ const Hero = () => {
 
       <div ref={elementRef} className="container mx-auto px-4 py-12 md:py-20 text-center relative z-10">
         <div className="max-w-5xl mx-auto">
-          {/* Logo Integration */}
-          <div className={`mb-6 md:mb-8 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
-            <img 
-              src="/lovable-uploads/8b5b2e3d-e16d-49c8-9ae3-4cc297ad8bb2.png" 
-              alt="Jung - Agência de Performance Marketing e Mídia Paga" 
-              className="h-16 md:h-20 w-auto mx-auto opacity-90"
-              loading="eager"
-              width="200"
-              height="80"
-            />
-          </div>
 
           {/* Main Headline */}
           <h1 className={`text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight px-2 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up animate-delay-100 opacity-100' : 'opacity-0'}`}>

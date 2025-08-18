@@ -9,17 +9,6 @@ const About = () => {
     <section ref={elementRef} id="about" className="py-20 bg-white" role="region" aria-labelledby="about-heading">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Logo and Brand */}
-          <div className={`mb-12 transition-all-smooth ${isIntersecting ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}>
-            <img 
-              src="/lovable-uploads/1ae7234c-1096-47c8-bf1f-10b07718962e.png" 
-              alt="Jung Voice & Performance - Logo da agência de performance marketing" 
-              className="h-24 w-auto mx-auto mb-6"
-              loading="lazy"
-              width="200"
-              height="96"
-            />
-          </div>
 
           {/* Main Content */}
           <div className="space-y-8">
