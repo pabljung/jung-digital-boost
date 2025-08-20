@@ -30,7 +30,7 @@ const AdminDashboard = () => {
         }
 
         // Check if user is authorized admin
-        const adminEmail = process.env.ADMIN_EMAIL || "admin@jung.com.br";
+        const adminEmail = process.env.ADMIN_EMAIL || "admin@jungcria.com";
         if (session.user.email === adminEmail) {
           setIsAuthenticated(true);
         } else {
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
           return;
         }
 
-        const adminEmail = process.env.ADMIN_EMAIL || "admin@jung.com.br";
+        const adminEmail = process.env.ADMIN_EMAIL || "admin@jungcria.com";
         if (session.user?.email === adminEmail) {
           setIsAuthenticated(true);
         } else {

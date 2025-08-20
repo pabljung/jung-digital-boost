@@ -25,7 +25,7 @@ const AdminLogin = () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
         // Check if user is admin
-        const adminEmail = process.env.ADMIN_EMAIL || "admin@jung.com.br";
+        const adminEmail = process.env.ADMIN_EMAIL || "admin@jungcria.com";
         if (session.user.email === adminEmail) {
           setIsAuthenticated(true);
         }
@@ -93,7 +93,7 @@ const AdminLogin = () => {
       }
 
       // Check if user is authorized admin
-      const adminEmail = process.env.ADMIN_EMAIL || "admin@jung.com.br";
+      const adminEmail = process.env.ADMIN_EMAIL || "admin@jungcria.com";
       if (data.user?.email !== adminEmail) {
         await supabase.auth.signOut();
         toast({
@@ -169,7 +169,7 @@ const AdminLogin = () => {
                   required
                   disabled={loading || isLocked}
                   className="bg-white/5 border-gray-600 text-white placeholder:text-gray-400 focus:border-jung-pink"
-                  placeholder="admin@jung.com.br"
+                  placeholder="admin@jungcria.com"
                 />
               </div>
               
