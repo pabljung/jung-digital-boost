@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { sanitizeInput } from "@/utils/security";
 
 interface GlobalScript {
   id?: string;
@@ -136,7 +137,9 @@ export function ScriptsGlobals() {
   };
 
   const handleContentChange = (field: 'head_content' | 'footer_content', value: string) => {
-    setScripts(prev => ({ ...prev, [field]: value }));
+    // Sanitize input to prevent XSS attacks
+    const sanitizedValue = sanitizeInput(value);
+    setScripts(prev => ({ ...prev, [field]: sanitizedValue }));
     setHasChanges(true);
   };
 

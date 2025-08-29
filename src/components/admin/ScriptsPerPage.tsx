@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { sanitizeInput } from "@/utils/security";
 
 interface PageScript {
   id?: string;
@@ -454,7 +455,7 @@ export function ScriptsPerPage() {
                   <Textarea
                     id="head-content"
                     value={editingScript.head_content}
-                    onChange={(e) => setEditingScript({...editingScript, head_content: e.target.value})}
+                    onChange={(e) => setEditingScript({...editingScript, head_content: sanitizeInput(e.target.value)})}
                     placeholder="<!-- Scripts que serão inseridos no <head> desta página -->"
                     className="font-mono text-sm min-h-[150px]"
                   />
@@ -464,7 +465,7 @@ export function ScriptsPerPage() {
                   <Textarea
                     id="footer-content"
                     value={editingScript.footer_content}
-                    onChange={(e) => setEditingScript({...editingScript, footer_content: e.target.value})}
+                    onChange={(e) => setEditingScript({...editingScript, footer_content: sanitizeInput(e.target.value)})}
                     placeholder="<!-- Scripts que serão inseridos no <footer> desta página -->"
                     className="font-mono text-sm min-h-[150px]"
                   />
